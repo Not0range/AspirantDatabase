@@ -21,10 +21,9 @@ namespace AspirantDatabase.Controllers
             ILogger<TeacherController> logger) : base(ctx, accessor, logger) { }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<object>>> List(int id)
+        public async Task<ActionResult<IEnumerable<object>>> List()
         {
-            return await _ctx.Teachers.AsNoTracking().Where(i => i.CathedraId == id)
-                .Select(i => new
+            return await _ctx.Teachers.AsNoTracking().Select(i => new
             {
                 i.Id,
                 i.Lastname,

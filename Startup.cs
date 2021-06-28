@@ -28,7 +28,11 @@ namespace AspirantDatabase
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
+                .AddCookie(options =>
+                {
+                    //options.Cookie.SameSite = SameSiteMode.None;
+                    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                });
             services.AddDbContext<AspirantDBContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("AspirantDb")));
             services.AddCors(options =>
@@ -36,7 +40,8 @@ namespace AspirantDatabase
                 options.AddPolicy("Policy", builder =>
                 {
                     builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials()
-                    .WithOrigins("http://aspirant.test");
+                    .WithOrigins("https://aspirant.test")
+                    .SetPreflightMaxAge(TimeSpan.FromDays(1));
                 });
             });
             services.AddHttpContextAccessor();
@@ -62,7 +67,7 @@ namespace AspirantDatabase
 
             app.UseCookiePolicy(new CookiePolicyOptions
             {
-                MinimumSameSitePolicy = SameSiteMode.Strict,
+                MinimumSameSitePolicy = SameSiteMode.None
             });
 
             app.UseRouting();

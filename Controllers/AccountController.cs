@@ -93,6 +93,14 @@ namespace AspirantDatabase.Controllers
             return new { AccessLevel = (int)user.Role };
         }
 
+        [HttpGet]
+        public ActionResult<object> Check()
+        {
+            if (_user == null)
+                return Unauthorized();
+            return new { AccessLevel = (int)_user.Role };
+        }
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {

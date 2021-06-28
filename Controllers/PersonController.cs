@@ -47,7 +47,7 @@ namespace AspirantDatabase.Controllers
             if (_user == null)
                 return Unauthorized();
             if (_person == null)
-                NotFound();
+                return NotFound();
             return new
             {
                 _person.Lastname,

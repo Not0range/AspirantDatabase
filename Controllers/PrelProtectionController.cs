@@ -14,10 +14,10 @@ namespace AspirantDatabase.Controllers
 {
     [ApiController]
     [EnableCors("Policy")]
-    public class PrelPortectionController : APIBase
+    public class PrelProtectionController : APIBase
     {
-        public PrelPortectionController(AspirantDBContext ctx, IHttpContextAccessor accessor,
-            ILogger<PrelPortectionController> logger) : base(ctx, accessor, logger) { }
+        public PrelProtectionController(AspirantDBContext ctx, IHttpContextAccessor accessor,
+            ILogger<PrelProtectionController> logger) : base(ctx, accessor, logger) { }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> List(int? id)
