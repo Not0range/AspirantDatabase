@@ -24,7 +24,7 @@ namespace AspirantDatabase.Controllers
         {
             if (_user == null)
                 return Unauthorized();
-            if (_person == null)
+            if (_person != null)
             {
                 if (_user.Role != Role.Admin)
                     return Forbid();
