@@ -4,14 +4,16 @@ using AspirantDatabase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspirantDatabase.Migrations
 {
     [DbContext(typeof(AspirantDBContext))]
-    partial class AspirantDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210629000243_RemoveFiles")]
+    partial class RemoveFiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -31,12 +31,6 @@ namespace AspirantDatabase.Entities
         [Required]
         public DateTime DateTime { get; set; }
 
-        public string FileName { get; set; }
-
-        public DateTime FileTime { get; set; }
-
-        public byte[] Document { get; set; }
-
         [MaxLength(50)]
         public string SubjectEdit { get; set; }
 
@@ -44,12 +38,6 @@ namespace AspirantDatabase.Entities
         public string PlaceEdit { get; set; }
 
         public DateTime? DateTimeEdit { get; set; }
-
-        public string FileNameEdit { get; set; }
-
-        public DateTime? FileTimeEdit { get; set; }
-
-        public byte[] DocumentEdit { get; set; }
 
         [MaxLength(150)]
         public string Reason { get; set; }

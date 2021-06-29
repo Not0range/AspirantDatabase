@@ -30,8 +30,10 @@ namespace AspirantDatabase
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    options.Cookie.SameSite = SameSiteMode.None;
-                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                    //комментировать эти строки для React'а
+
+                    //options.Cookie.SameSite = SameSiteMode.None;
+                    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 });
             services.AddDbContext<AspirantDBContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("AspirantDb")));

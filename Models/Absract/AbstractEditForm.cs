@@ -25,9 +25,7 @@ namespace AspirantDatabase.Models
             {
                 bool edit = @abstract.Subject == @abstract.SubjectEdit &&
                     @abstract.Place == @abstract.PlaceEdit &&
-                    @abstract.DateTime == @abstract.DateTimeEdit &&
-                    @abstract.FileName == @abstract.FileNameEdit &&
-                    @abstract.FileTime == @abstract.FileTimeEdit && string.IsNullOrWhiteSpace(@abstract.Reason);
+                    @abstract.DateTime == @abstract.DateTimeEdit && string.IsNullOrWhiteSpace(@abstract.Reason);
                 if (!string.IsNullOrWhiteSpace(Subject))
                 {
                     @abstract.SubjectEdit = Subject;

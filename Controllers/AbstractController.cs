@@ -159,67 +159,11 @@ namespace AspirantDatabase.Controllers
                 @abstract.SubjectEdit = null;
                 @abstract.PlaceEdit = null;
                 @abstract.DateTimeEdit = null;
-                @abstract.DocumentEdit = null;
-                @abstract.FileNameEdit = null;
-                @abstract.FileTimeEdit = null;
                 @abstract.Reason = null;
                 await _ctx.SaveChangesAsync();
                 return Ok();
             }
             @abstract.Reason = obj.Reason;
-            await _ctx.SaveChangesAsync();
-            return Ok();
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> Document(int id, bool? edit)
-        {
-            if (_user == null)
-                return Unauthorized();
-
-            var @abstract = await _ctx.Abstracts.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
-            if (@abstract == null || (_user.Role != Role.Admin && (_aspirant == null || @abstract.AspirantId != _aspirant.Id)))
-                return NotFound();
-            if (@abstract.FileName == null)
-                return BadRequest();
-
-            if (edit.HasValue && !edit.Value)
-                return File(@abstract.DocumentEdit, "application/octet-stream", @abstract.FileName);
-            else
-                return File(@abstract.Document, "application/octet-stream", @abstract.FileName);
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Document(int id, IFormFile file)
-        {
-            if (_user == null)
-                return Unauthorized();
-            if (_user.Role != Role.Abiturient || _user.Role != Role.Admin)
-                return Forbid();
-
-            var @abstract = await _ctx.Abstracts.FirstOrDefaultAsync(i => i.Id == id);
-            if (@abstract == null || (_user.Role != Role.Admin && (_aspirant == null || @abstract.AspirantId != _aspirant.Id)))
-                return NotFound();
-
-            @abstract.FileNameEdit = Path.GetFileName(file.FileName);
-            @abstract.FileTimeEdit = DateTime.Now;
-            @abstract.DocumentEdit = new byte[file.Length];
-            using(var stream = new MemoryStream(@abstract.DocumentEdit))
-            {
-                await file.CopyToAsync(stream);
-                stream.Close();
-            }
-
-            if(@abstract.Subject == @abstract.SubjectEdit &&
-                    @abstract.Place == @abstract.PlaceEdit &&
-                    @abstract.DateTime == @abstract.DateTimeEdit &&
-                    @abstract.FileName == @abstract.FileNameEdit &&
-                    @abstract.FileTime == @abstract.FileTimeEdit && string.IsNullOrWhiteSpace(@abstract.Reason))
-            {
-                @abstract.FileName = @abstract.FileNameEdit;
-                @abstract.FileTime = @abstract.FileTimeEdit.Value;
-                @abstract.Document = @abstract.DocumentEdit;
-            }
             await _ctx.SaveChangesAsync();
             return Ok();
         }

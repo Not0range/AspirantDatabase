@@ -41,10 +41,10 @@ namespace AspirantDatabase.Models
             if (aspirant)
             {
                 publication.SubjectEdit = Subject;
-                publication.Journal = Journal;
-                publication.Number = Number;
-                publication.Date = Date;
-                publication.Page = Page;
+                publication.JournalEdit = Journal;
+                publication.NumberEdit = Number;
+                publication.DateEdit = Date;
+                publication.PageEdit = Page;
             }
             else
                 publication.AspirantId = AspirantId.Value;
