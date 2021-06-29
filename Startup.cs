@@ -32,8 +32,8 @@ namespace AspirantDatabase
                 {
                     //комментировать эти строки для React'а
 
-                    //options.Cookie.SameSite = SameSiteMode.None;
-                    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                    options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 });
             services.AddDbContext<AspirantDBContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("AspirantDb")));

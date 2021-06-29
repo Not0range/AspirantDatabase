@@ -29,7 +29,7 @@ namespace AspirantDatabase.Controllers
 
             return await _ctx.Abiturients.AsNoTracking().Select(i => new
             {
-                i.PersonId, Specialties = i.SpecialtiesIndecies
+                i.Id, i.PersonId, Specialties = i.SpecialtiesIndecies
             }).ToListAsync();
         }
 

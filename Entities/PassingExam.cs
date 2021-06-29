@@ -17,7 +17,7 @@ namespace AspirantDatabase.Entities
         [Required]
         public int ExamId { get; set; }
 
-        [ForeignKey("EntryExamId")]
+        [ForeignKey("ExamId")]
         public Exam Exam { get; set; }
 
         [Required]
